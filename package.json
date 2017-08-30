@@ -6,7 +6,9 @@
   "dependencies": {
     "angular": "^1.6.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "http-serve": "^1.0.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
