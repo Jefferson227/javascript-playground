@@ -1,4 +1,7 @@
-var mainApp = angular.module('mainApp', []);
+var mainApp = angular.module('mainApp', [
+    'mainApp.directives'
+]);
+
 mainApp.controller('mainController', mainController);
 
 function mainController($scope) {
