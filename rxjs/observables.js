@@ -3,6 +3,23 @@
  * Inspired by André Staltz video here: https://www.youtube.com/watch?v=uQ1zhJHclvs
  */
 
+function delay(timeToDelay) {
+    const inputObservable = this;
+    const outputObservable = createObservable(outputObserver => {
+        inputObservable.subscribe({
+            next: x => {
+                setTimeout(() => {
+                    outputObserver.next(x)
+                }, timeToDelay);
+            },
+            error: e => outputObserver.error(e),
+            done: () => outputObserver.done()
+        });
+    });
+
+    return outputObservable;
+}
+
 function filter(conditionFn) {
     const inputObservable = this;
     const outputObservable = createObservable(outputObserver => {
@@ -41,6 +58,7 @@ function createObservable(subscribeFn) {
         subscribe: subscribeFn,
         map: map,
         filter: filter,
+        delay: delay,
     };
 }
 
@@ -69,10 +87,12 @@ const observer = {
 arrayObservable
     .map(x => x / 10)
     .filter(x => x !== 2)
+    .delay(3000)
     .subscribe(observer);
 
 // Uncomment the code below to test it on the browser
 // clickObservable
 //     .map(x => x.clientX)
 //     .filter(x => x < 200)
+//     .delay(3000)
 //     .subscribe(observer);
