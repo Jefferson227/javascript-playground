@@ -3,7 +3,13 @@
  * Inspired by André Staltz video here: https://www.youtube.com/watch?v=uQ1zhJHclvs
  */
 
-const observable = {
+const clickObservable = {
+    subscribe: function subscribe(obs) {
+        document.addEventListener('click', obs.next);
+    }
+};
+
+const arrayObservable = {
     subscribe: function subscribe(obs) {
         let arr = [10, 20, 30];
         arr.forEach(obs.next);
@@ -23,4 +29,4 @@ const observer = {
     }
 };
 
-observable.subscribe(observer);
+arrayObservable.subscribe(observer);
