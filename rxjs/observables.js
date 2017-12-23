@@ -3,19 +3,21 @@
  * Inspired by André Staltz video here: https://www.youtube.com/watch?v=uQ1zhJHclvs
  */
 
-const clickObservable = {
-    subscribe: function subscribe(obs) {
-        document.addEventListener('click', obs.next);
-    }
-};
+function createObservable(subscribeFn) {
+    return {
+        subscribe: subscribeFn
+    };
+}
 
-const arrayObservable = {
-    subscribe: function subscribe(obs) {
-        let arr = [10, 20, 30];
-        arr.forEach(obs.next);
-        obs.done();
-    }
-};
+const clickObservable = createObservable(function subscribe(obs) {
+    document.addEventListener('click', obs.next);
+});
+
+const arrayObservable = createObservable(function subscribe(obs) {
+    let arr = [10, 20, 30];
+    arr.forEach(obs.next);
+    obs.done();
+});
 
 const observer = {
     next: function next(ob) {
