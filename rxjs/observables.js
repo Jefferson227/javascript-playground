@@ -17,9 +17,9 @@ const observer = {
     }
 };
 
-function getMeSomeData(obs) {
+function subscribe(obs) {
     arr.forEach(obs.next);
     obs.done();
 }
 
-getMeSomeData(observer);
+subscribe(observer);
