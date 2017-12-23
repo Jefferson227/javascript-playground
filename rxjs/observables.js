@@ -3,6 +3,23 @@
  * Inspired by André Staltz video here: https://www.youtube.com/watch?v=uQ1zhJHclvs
  */
 
+function filter(conditionFn) {
+    const inputObservable = this;
+    const outputObservable = createObservable(outputObserver => {
+        inputObservable.subscribe({
+            next: x => {
+                if (conditionFn(x)) {
+                    outputObserver.next(x);
+                }
+            },
+            error: e => outputObserver.error(e),
+            done: () => outputObserver.done()
+        });
+    });
+
+    return outputObservable;
+}
+
 function map(transformFn) {
     const inputObservable = this;
     const outputObservable = createObservable(outputObserver => {
@@ -22,7 +39,8 @@ function map(transformFn) {
 function createObservable(subscribeFn) {
     return {
         subscribe: subscribeFn,
-        map: map
+        map: map,
+        filter: filter,
     };
 }
 
@@ -50,4 +68,5 @@ const observer = {
 
 arrayObservable
     .map(x => x / 10)
+    .filter(x => x !== 2)
     .subscribe(observer);
