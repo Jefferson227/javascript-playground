@@ -3,7 +3,13 @@
  * Inspired by André Staltz video here: https://www.youtube.com/watch?v=uQ1zhJHclvs
  */
 
-let arr = [10, 20, 30];
+const observable = {
+    subscribe: function subscribe(obs) {
+        let arr = [10, 20, 30];
+        arr.forEach(obs.next);
+        obs.done();
+    }
+};
 
 const observer = {
     next: function next(ob) {
@@ -17,9 +23,4 @@ const observer = {
     }
 };
 
-function subscribe(obs) {
-    arr.forEach(obs.next);
-    obs.done();
-}
-
-subscribe(observer);
+observable.subscribe(observer);
