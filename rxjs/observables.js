@@ -73,6 +73,6 @@ arrayObservable
 
 // Uncomment the code below to test it on the browser
 // clickObservable
-//     .map(x => clientX)
+//     .map(x => x.clientX)
 //     .filter(x => x < 200)
 //     .subscribe(observer);
