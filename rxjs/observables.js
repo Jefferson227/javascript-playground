@@ -5,21 +5,21 @@
 
 let arr = [10, 20, 30];
 
-function next(ob) {
-    console.log(ob);
+const observer = {
+    next: function next(ob) {
+        console.log(ob);
+    },
+    error: function error(ob) {
+        console.error(ob);
+    },
+    done: function done() {
+        console.log('done');
+    }
+};
+
+function getMeSomeData(obs) {
+    arr.forEach(obs.next);
+    obs.done();
 }
 
-function error(ob) {
-    console.error(ob);
-}
-
-function done() {
-    console.log('done');
-}
-
-function getMeSomeData(nextCb, errorCd, doneCb) {
-    arr.forEach(nextCb);
-    doneCb();
-}
-
-getMeSomeData(next, error, done);
+getMeSomeData(observer);
