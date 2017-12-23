@@ -1,6 +1,6 @@
 /**
  * Just practicing my knowledge on RxJs observables.
- * Inspired by André Staltz video here: https://www.youtube.com/watch?v=uQ1zhJHclvs
+ * Inspired by André Staltz's video here: https://www.youtube.com/watch?v=uQ1zhJHclvs
  */
 
 function delay(timeToDelay) {
