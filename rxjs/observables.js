@@ -70,3 +70,9 @@ arrayObservable
     .map(x => x / 10)
     .filter(x => x !== 2)
     .subscribe(observer);
+
+// Uncomment the code below to test it on the browser
+// clickObservable
+//     .map(x => clientX)
+//     .filter(x => x < 200)
+//     .subscribe(observer);
